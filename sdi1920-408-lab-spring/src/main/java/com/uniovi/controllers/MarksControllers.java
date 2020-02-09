@@ -20,7 +20,7 @@ public class MarksControllers {
 	public String setMark(@ModelAttribute Mark mark) {
 		return "Added: " + mark.getDescription() 
 			+ " with score: " + mark.getScore() 
-			+ " id: " + mark.getId();
+			+ ", id: " + mark.getId();
 	}
 
 	@RequestMapping("/mark/details/{id}")
