@@ -1,5 +1,10 @@
 package com.uniovi.controllers;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,12 +23,15 @@ import com.uniovi.validators.AddMarkFormValidator;
 @Controller
 public class MarksControllers {
 
+	@Autowired
+	private HttpSession httpSession;
+
 	@Autowired // Inyectar el servicio
 	private MarksService marksService;
 
 	@Autowired
 	private UsersService usersService;
-	
+
 	@Autowired
 	private AddMarkFormValidator addMarkFormValidator;
 
@@ -38,7 +46,7 @@ public class MarksControllers {
 		addMarkFormValidator.validate(mark, result);
 		if (result.hasErrors()) {
 			return "/mark/add";
-		}		
+		}
 		marksService.addMark(mark);
 		return "redirect:/mark/list";
 	}
