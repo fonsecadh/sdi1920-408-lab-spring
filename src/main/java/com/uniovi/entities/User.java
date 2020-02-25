@@ -22,7 +22,7 @@ public class User {
 	private String dni;
 	private String name;
 	private String lastName;
-	private String role;	
+	private String role;
 	private String password;
 	@Transient // Propiedad que no se almacena en la tabla
 	private String passwordConfirm;
@@ -31,7 +31,7 @@ public class User {
 	private Set<Mark> marks;
 
 	public User() {
-		
+
 	}
 
 	public User(String dni, String name, String lastName) {
@@ -99,6 +99,14 @@ public class User {
 
 	public void setPasswordConfirm(String passwordConfirm) {
 		this.passwordConfirm = passwordConfirm;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 }
