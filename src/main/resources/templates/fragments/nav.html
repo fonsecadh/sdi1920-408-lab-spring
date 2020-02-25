@@ -10,18 +10,18 @@
 			<img src="/img/student-48.png" alt="logo" />
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
 				<li><a href="/" th:text="#{nav.message.home}"></a></li>
 				<li id="marks-menu" class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{nav.message.marks}">
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="/mark/add" th:text="#{nav.message.marks.add}"></a></li>
+						<li sec:authorize="hasRole('ROLE_PROFESSOR')"><a href="/mark/add" th:text="#{nav.message.marks.add}"></a></li>
 						<li><a href="/mark/list" th:text="#{nav.message.marks.list}"></a></li>
 					</ul>
 				</li>
-				<li id="users-menu" class="dropdown">
+				<li id="users-menu" class="dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{nav.message.users}">
 						<span class="caret"></span>
 					</a>
@@ -60,11 +60,14 @@
 						</li>
 					</ul>
 				</li>
-				<li><a href="/signup" th:text="#{signup.message}"> <span
+				<li sec:authorize="!isAuthenticated()"><a href="/signup" th:text="#{signup.message}"> <span
 						class="glyphicon glyphicon-user"> </span>Registrate
 				</a></li>
-				<li><a href="/login" th:text="#{login.message}"> <span
+				<li sec:authorize="!isAuthenticated()"><a href="/login" th:text="#{login.message}"> <span
 						class="glyphicon glyphicon-log-in"> </span>Identifícate
+				</a></li>
+				<li sec:authorize="isAuthenticated()"><a href="/logout"><span
+						class="glyphicon glyphicon-log-out"></span>Desconectar
 				</a></li>
 			</ul>
 		</div>
