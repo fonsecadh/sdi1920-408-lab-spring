@@ -20,7 +20,7 @@ import com.uniovi.validators.SignUpFormValidator;
 
 @Controller
 public class UserController {
-	
+
 	@Autowired
 	private RolesService rolesService;
 
@@ -92,7 +92,7 @@ public class UserController {
 		if (result.hasErrors()) {
 			return "signup";
 		}
-		
+
 		user.setRole(rolesService.getRoles()[0]);
 		usersService.addUser(user);
 		securityService.autoLogin(user.getDni(), user.getPasswordConfirm());
