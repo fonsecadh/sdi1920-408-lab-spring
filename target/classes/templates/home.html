@@ -10,7 +10,8 @@
 			Usuario Autenticado como : <span sec:authentication="principal.username" th:inline="text"></span>
 		</p>
 		<p>Notas del usuario</p>
-		<div th:replace="fragments/tablemarks"/>
+		<div th:replace="fragments/tablemarks" th:fragment="tableMarks" id="tableMarks"/>
+		<footer th:replace="fragments/pagination"/>
 	</div>
 	<footer th:replace="fragments/footer" />
 </body>

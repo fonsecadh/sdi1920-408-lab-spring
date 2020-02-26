@@ -29,9 +29,9 @@
 		    <td th:text="${professor.nombre}">Ange</td>
 		    <td th:text="${professor.apellidos}"> Ushiromiya</td>
 		    <td th:text="${professor.categoria}">Matemáticas</td>
-		    <td><a th:href="${'/professor/details/' + professor.id}">detalles</a></td>
-		    <td><a th:href="${'/professor/edit/' + professor.id}">modificar</a></td>
-		    <td><a th:href="${'/professor/delete/' + professor.id}">eliminar</a></td>
+		    <td><a sec:authorize="hasAnyRole('ROLE_PROFESSOR', 'ROLE_ADMIN')" th:href="${'/professor/details/' + professor.id}">detalles</a></td>
+		    <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/professor/edit/' + professor.id}">modificar</a></td>
+		    <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/professor/delete/' + professor.id}">eliminar</a></td>
 		  </tr>
 		</tbody>
 	  </table>
