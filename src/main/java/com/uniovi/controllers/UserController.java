@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.User;
 import com.uniovi.services.RolesService;
@@ -34,8 +35,12 @@ public class UserController {
 	private SignUpFormValidator signUpFormValidator;
 
 	@RequestMapping("/user/list")
-	public String getListado(Model model) {
-		model.addAttribute("usersList", usersService.getUsers());
+	public String getListado(Model model, @RequestParam(value = "", required=false) String searchText) {
+		if (searchText != null && !searchText.isEmpty()) {
+			model.addAttribute("usersList", usersService.getUsersForNameAndSurname(searchText));
+		} else {
+			model.addAttribute("usersList", usersService.getUsers());
+		}		
 		return "user/list";
 	}
 
