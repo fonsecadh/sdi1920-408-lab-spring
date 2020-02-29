@@ -219,7 +219,7 @@ public class NotaneitorTests {
 		driver.findElement(enlace).click();
 		SeleniumUtils.esperarSegundos(driver, 1);
 		// Esperamos por la ventana de detalle
-		PO_View.checkElement(driver, "text", "Detalles de lanota");
+		PO_View.checkElement(driver, "text", "Detalles de la nota");
 		SeleniumUtils.esperarSegundos(driver, 1);
 		// Ahora nos desconectamos
 		PO_PrivateView.clickOption(driver, "logout", "text", "Identifícate");
