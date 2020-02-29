@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
 import com.uniovi.tests.pageobjects.PO_View;
@@ -113,6 +114,66 @@ public class NotaneitorTests {
 		PO_RegisterView.fillForm(driver, "99999990B", "Josefo", "Perez", "123456", "123457");
 		// Comprobamos el error de Contraseñas no coincidiendo
 		PO_RegisterView.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
+	}
+
+	// PR07. Loguearse con éxito desde el Rol de Usuario, 99999990A, 123456
+	@Test
+	public void PR07() {
+		// Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		// Rellenamos el formulario
+		PO_LoginView.fillForm(driver, "99999990A", "123456");
+		// Comprobamos que entramos en la pagina privada de Alumno
+		PO_View.checkElement(driver, "text", "Notas del usuario");
+	}
+
+	// PR08. Loguearse con éxito desde el Rol de Profesor, 99999993D, 123456
+	@Test
+	public void PR08() {
+		// Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		// Rellenamos el formulario
+		PO_LoginView.fillForm(driver, "99999993D", "123456");
+		// Comprobamos que entramos en la pagina privada de Profesor
+		PO_View.checkElement(driver, "text", "Notas del usuario");
+	}
+
+	// PR09. Loguearse con éxito desde el Rol de Administrador, 99999988F, 123456
+	@Test
+	public void PR09() {
+		// Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		// Rellenamos el formulario
+		PO_LoginView.fillForm(driver, "99999988F", "123456");
+		// Comprobamos que entramos en la pagina privada de Administrador
+		PO_View.checkElement(driver, "text", "Notas del usuario");
+	}
+
+	// PR10. Loguearse sin éxito desde el Rol de Alumno, 99999990A, 123456
+	@Test
+	public void PR10() {
+		// Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		// Rellenamos el formulario
+		PO_LoginView.fillForm(driver, "99999990A", "123456");
+		// Comprobamos que seguimos en el formulario de login
+		PO_View.checkElement(driver, "text", "Identificate");
+	}
+
+	// PR11. Loguearse con éxito y desconexión desde el Rol de Usuario, 99999990A,
+	// 123456
+	@Test
+	public void PR11() {
+		// Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		// Rellenamos el formulario
+		PO_LoginView.fillForm(driver, "99999990A", "123456");
+		// Comprobamos que entramos en la pagina privada de Alumno
+		PO_View.checkElement(driver, "text", "Notas del usuario");
+		// Nos desconectamos
+		PO_HomeView.clickOption(driver, "Desconectar", "class", "glyphicon glyphicon-log-out");
+		// Comprobamos que nos devuelve al formulario de login
+		PO_View.checkElement(driver, "text", "Identificate");
 	}
 
 }
