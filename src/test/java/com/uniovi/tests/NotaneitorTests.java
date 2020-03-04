@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -26,8 +27,12 @@ import com.uniovi.tests.util.SeleniumUtils;
 public class NotaneitorTests {
 
 	// GNU/Linux
-	static String PathFirefox = "/usr/bin/firefox";
-	static String GeckDriver024 = "/home/asuka/Universidad/Tercero/SDI/Lab/SecondPart/Other_files/Materials/geckodriver";
+//	static String PathFirefox = "/usr/bin/firefox";
+//	static String GeckDriver024 = "/home/asuka/Universidad/Tercero/SDI/Lab/SecondPart/Other_files/Materials/geckodriver";
+	
+	// Windows (Lab)
+	static String PathFirefox = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
+	static String GeckDriver024 = "C:\\Users\\UO258318\\Documents\\SDI\\Spring\\Materiales\\geckodriver024win64.exe";
 
 	// Same for all OS
 	static WebDriver driver = getDriver(PathFirefox, GeckDriver024);
@@ -50,8 +55,8 @@ public class NotaneitorTests {
 		driver.manage().deleteAllCookies();
 	}
 
-	@Test
-	public void test() {
+	@AfterClass
+	static public void end() {
 		// Cerramos el navegador al finalizar las pruebas
 		driver.quit();
 	}
@@ -163,7 +168,7 @@ public class NotaneitorTests {
 		// Vamos al formulario de logueo.
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		// Rellenamos el formulario
-		PO_LoginView.fillForm(driver, "99999990A", "123456");
+		PO_LoginView.fillForm(driver, "99999990A", "123458");
 		// Comprobamos que seguimos en el formulario de login
 		PO_View.checkElement(driver, "text", "Identifícate");
 	}
